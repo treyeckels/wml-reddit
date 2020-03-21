@@ -63,7 +63,7 @@ const Landing = () => {
             />
           </Grid>
           <Grid item xs={12} sm={8}>
-            <SortBar handleSortByChange={handleSortByChange} />
+            <SortBar handleSortByChange={handleSortByChange} sortBy={sortBy} />
             {posts.length ? (
               posts.map(item => {
                 return <StoryCard data={item} />;

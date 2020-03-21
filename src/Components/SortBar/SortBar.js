@@ -27,10 +27,13 @@ const useStyles = makeStyles(theme => ({
   root: {
     marginBottom: theme.spacing(2),
     padding: theme.spacing(2)
+  },
+  active: {
+    color: 'red'
   }
 }));
 
-const SortBar = ({ handleSortByChange }) => {
+const SortBar = ({ handleSortByChange, sortBy }) => {
   const classes = useStyles();
 
   return (
@@ -41,7 +44,7 @@ const SortBar = ({ handleSortByChange }) => {
             onClick={() => {
               handleSortByChange('hot');
             }}
-            className={classes.icon}
+            className={sortBy === 'hot' ? classes.active : ''}
           />
         </IconButton>
       </Tooltip>
@@ -51,7 +54,7 @@ const SortBar = ({ handleSortByChange }) => {
             onClick={() => {
               handleSortByChange('new');
             }}
-            className={classes.icon}
+            className={sortBy === 'new' ? classes.active : ''}
           />
         </IconButton>
       </Tooltip>
@@ -61,7 +64,7 @@ const SortBar = ({ handleSortByChange }) => {
             onClick={() => {
               handleSortByChange('controversial');
             }}
-            className={classes.icon}
+            className={sortBy === 'controversial' ? classes.active : ''}
           />
         </IconButton>
       </Tooltip>
@@ -71,7 +74,7 @@ const SortBar = ({ handleSortByChange }) => {
             onClick={() => {
               handleSortByChange('top');
             }}
-            className={classes.icon}
+            className={sortBy === 'top' ? classes.active : ''}
           />
         </IconButton>
       </Tooltip>
@@ -81,7 +84,7 @@ const SortBar = ({ handleSortByChange }) => {
             onClick={() => {
               handleSortByChange('rising');
             }}
-            className={classes.icon}
+            className={sortBy === 'rising' ? classes.active : ''}
           />
         </IconButton>
       </Tooltip>
