@@ -7,6 +7,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardHeader from '@material-ui/core/CardHeader';
+import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TweetEmbed from 'react-tweet-embed';
@@ -14,7 +15,7 @@ import blueGrey from '@material-ui/core/colors/blueGrey';
 
 import './StoryCard.css';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
     border: `1px solid ${blueGrey[100]}`,
     marginBottom: 20,
@@ -42,8 +43,11 @@ const useStyles = makeStyles({
   tweet: {
     display: 'flex',
     justifyContent: 'center'
+  },
+  chip: {
+    margin: theme.spacing(0.5)
   }
-});
+}));
 
 const StoryCard = ({ data }) => {
   const classes = useStyles();
@@ -103,6 +107,15 @@ const StoryCard = ({ data }) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
+        {data.link_flair_text ? (
+          <Chip
+            style={{ backgroundColor: data.link_flair_background_color }}
+            label={data.link_flair_text}
+            className={classes.chip}
+          />
+        ) : (
+          ''
+        )}
         <Button size="small" color="primary">
           Share
         </Button>
