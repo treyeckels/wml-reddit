@@ -79,7 +79,7 @@ const SortBar = ({ handleSortByChange }) => {
         <IconButton aria-label="Sort by Trending">
           <TrendingUpIcon
             onClick={() => {
-              handleSortByChange('trend');
+              handleSortByChange('rising');
             }}
             className={classes.icon}
           />

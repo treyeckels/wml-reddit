@@ -5,6 +5,8 @@ import StoryCard from '../Components/StoryCard/StoryCard';
 import RailCard from '../Components/RailCard/RailCard';
 import SubredditHeader from '../Components/SubredditHeader/SubredditHeader';
 import SortBar from '../Components/SortBar/SortBar';
+import LoadingOverlay from 'react-loading-overlay';
+import Skeleton from 'react-loading-skeleton';
 import api from '../api';
 
 const useStyles = makeStyles({
@@ -43,6 +45,7 @@ const Landing = () => {
   }, [sortBy]);
 
   const handleSortByChange = type => {
+    setPosts([]);
     setSortBy(type);
   };
 
@@ -50,30 +53,32 @@ const Landing = () => {
   return (
     <div>
       <div className={classes.root}>
-        {posts.length ? (
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <SubredditHeader
-                img={data.banner_img}
-                height={data.banner_size[1]}
-                title={data.display_name}
-                icon={data.icon_img}
-              />
-            </Grid>
-            <Grid item xs={12} sm={8}>
-              <SortBar handleSortByChange={handleSortByChange} />
-              {posts.map(item => {
-                return <StoryCard data={item} />;
-              })}
-            </Grid>
-            <Grid item xs={12} sm={3}>
-              <RailCard title="About" description={data.description} />
-              <RailCard title="About" />
-            </Grid>
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <SubredditHeader
+              img={data.banner_img}
+              height={200}
+              title={data.display_name}
+              icon={data.icon_img}
+            />
           </Grid>
-        ) : (
-          'Loading'
-        )}
+          <Grid item xs={12} sm={8}>
+            <SortBar handleSortByChange={handleSortByChange} />
+            {posts.length ? (
+              posts.map(item => {
+                return <StoryCard data={item} />;
+              })
+            ) : (
+              <div style={{ fontSize: 20, lineHeight: 2, height: 100 }}>
+                <Skeleton count={100} />
+              </div>
+            )}
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <RailCard title="About" description={data.description} />
+            <RailCard title="About" />
+          </Grid>
+        </Grid>
       </div>
     </div>
   );

@@ -17,7 +17,9 @@ import grey from '@material-ui/core/colors/grey';
 const SubredditHeader = ({ img, height, title }) => {
   const useStyles = makeStyles(theme => ({
     img: {
-      backgroundImage: `url(${img})`,
+      backgroundImage: img
+        ? `url(${img})`
+        : 'linear-gradient(rgba(0,0,0,1), rgba(255,255,255,1))',
       backgroundPosition: '50%',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',

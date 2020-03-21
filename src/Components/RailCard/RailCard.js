@@ -11,6 +11,7 @@ import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import blueGrey from '@material-ui/core/colors/blueGrey';
+import Skeleton from 'react-loading-skeleton';
 const ReactMarkdown = require('react-markdown');
 
 const useStyles = makeStyles(theme => ({
@@ -29,10 +30,17 @@ const RailCard = ({ description, title, icon }) => {
 
   return (
     <Card className={classes.root}>
-      <CardHeader title={title} avatar={<Avatar src={icon}></Avatar>} />
+      <CardHeader
+        title={title || <Skeleton />}
+        avatar={<Avatar src={icon}></Avatar>}
+      />
       <CardActionArea>
         <CardContent>
-          <ReactMarkdown source={description} />
+          {description ? (
+            <ReactMarkdown source={description} />
+          ) : (
+            <Skeleton count={10} />
+          )}
         </CardContent>
       </CardActionArea>
     </Card>
