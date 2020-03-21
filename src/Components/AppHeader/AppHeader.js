@@ -40,7 +40,7 @@ const AppHeader = ({ description, title, icon }) => {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" className={classes.title}>
-          News
+          WML Reddit App
         </Typography>
         <Button color="inherit">Login</Button>
       </Toolbar>

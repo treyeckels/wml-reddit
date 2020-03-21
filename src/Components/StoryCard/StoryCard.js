@@ -120,7 +120,7 @@ const StoryCard = ({ data }) => {
           Share
         </Button>
         <Button size="small" color="primary">
-          Learn More
+          Read More
         </Button>
       </CardActions>
     </Card>
