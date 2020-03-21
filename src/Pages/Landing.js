@@ -3,22 +3,27 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import StoryCard from '../Components/StoryCard/StoryCard';
 import RailCard from '../Components/RailCard/RailCard';
+import SubredditHeader from '../Components/SubredditHeader/SubredditHeader';
+import SortBar from '../Components/SortBar/SortBar';
 import api from '../api';
 
 const useStyles = makeStyles({
-  root: {}
+  root: {
+    padding: 10
+  }
 });
 
 const Landing = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    api
-      .getSubredit('Coronavirus')
+    const subReditPromise = api.getSubredit('Coronavirus');
+    const postsPromise = api.getSubreditPosts('Coronavirus');
+    Promise.all([subReditPromise, postsPromise])
       .then(data => {
-        console.log(data);
-        setData(data);
-        console.log(data);
+        setData(data[0]);
+        setPosts(data[1]);
       })
       .catch(err => {
         console.log(err);
@@ -27,21 +32,33 @@ const Landing = () => {
 
   const classes = useStyles();
   return (
-    <div className={classes.root}>
-      <Grid container spacing={4}>
-        <Grid item xs={12}>
-          Heading
-        </Grid>
-        <Grid item xs={12} sm={8}>
-          {data.map(item => {
-            return <StoryCard data={item} />;
-          })}
-        </Grid>
-        <Grid item xs={12} sm={3}>
-          <RailCard title="About" />
-          <RailCard title="About" />
-        </Grid>
-      </Grid>
+    <div>
+      <div className={classes.root}>
+        {posts.length ? (
+          <Grid container spacing={4}>
+            <Grid item xs={12}>
+              <SubredditHeader
+                img={data.banner_img}
+                height={data.banner_size[1]}
+                title={data.display_name}
+                icon={data.icon_img}
+              />
+            </Grid>
+            <Grid item xs={12} sm={8}>
+              <SortBar />
+              {posts.map(item => {
+                return <StoryCard data={item} />;
+              })}
+            </Grid>
+            <Grid item xs={12} sm={3}>
+              <RailCard title="About" description={data.description} />
+              <RailCard title="About" />
+            </Grid>
+          </Grid>
+        ) : (
+          'Loading'
+        )}
+      </div>
     </div>
   );
 };

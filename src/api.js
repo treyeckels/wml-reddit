@@ -1,6 +1,6 @@
 const redditAPI = 'https://www.reddit.com';
 const api = {
-  getSubredit: name => {
+  getSubreditPosts: name => {
     return fetch(`${redditAPI}/r/${name}/top.json`)
       .then(res => {
         return res.json();
@@ -10,6 +10,18 @@ const api = {
         return data.data.children.map(item => {
           return item.data;
         });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+  getSubredit: name => {
+    return fetch(`${redditAPI}/r/${name}/about.json`)
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        return data.data;
       })
       .catch(err => {
         console.log(err);
