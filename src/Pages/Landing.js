@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import StoryCard from '../Components/StoryCard/StoryCard';
+import RailCard from '../Components/RailCard/RailCard';
 import api from '../api';
 
 const useStyles = makeStyles({
@@ -37,7 +38,8 @@ const Landing = () => {
           })}
         </Grid>
         <Grid item xs={12} sm={3}>
-          right rail
+          <RailCard title="About" />
+          <RailCard title="About" />
         </Grid>
       </Grid>
     </div>
