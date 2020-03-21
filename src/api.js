@@ -1,7 +1,7 @@
 const redditAPI = 'https://www.reddit.com';
 const api = {
-  getSubreditPosts: name => {
-    return fetch(`${redditAPI}/r/${name}/top.json`)
+  getSubreditPosts: (name, sortBy) => {
+    return fetch(`${redditAPI}/r/${name}/${sortBy}.json`)
       .then(res => {
         return res.json();
       })

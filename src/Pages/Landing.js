@@ -16,10 +16,11 @@ const useStyles = makeStyles({
 const Landing = () => {
   const [data, setData] = useState({});
   const [posts, setPosts] = useState([]);
+  const [sortBy, setSortBy] = useState('top');
 
   useEffect(() => {
     const subReditPromise = api.getSubredit('Coronavirus');
-    const postsPromise = api.getSubreditPosts('Coronavirus');
+    const postsPromise = api.getSubreditPosts('Coronavirus', sortBy);
     Promise.all([subReditPromise, postsPromise])
       .then(data => {
         setData(data[0]);
@@ -29,6 +30,21 @@ const Landing = () => {
         console.log(err);
       });
   }, []);
+
+  useEffect(() => {
+    api
+      .getSubreditPosts('Coronavirus', sortBy)
+      .then(data => {
+        setPosts(data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [sortBy]);
+
+  const handleSortByChange = type => {
+    setSortBy(type);
+  };
 
   const classes = useStyles();
   return (
@@ -45,7 +61,7 @@ const Landing = () => {
               />
             </Grid>
             <Grid item xs={12} sm={8}>
-              <SortBar />
+              <SortBar handleSortByChange={handleSortByChange} />
               {posts.map(item => {
                 return <StoryCard data={item} />;
               })}

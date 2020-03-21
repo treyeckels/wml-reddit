@@ -30,34 +30,59 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SortBar = ({}) => {
+const SortBar = ({ handleSortByChange }) => {
   const classes = useStyles();
 
   return (
     <Paper className={classes.root} elevation={2}>
       <Tooltip title="Sort by What's Hot">
         <IconButton aria-label="Sort by What's Hot">
-          <WhatshotIcon className={classes.icon} />
+          <WhatshotIcon
+            onClick={() => {
+              handleSortByChange('hot');
+            }}
+            className={classes.icon}
+          />
         </IconButton>
       </Tooltip>
       <Tooltip title="Sort by What's New">
         <IconButton aria-label="Sort by What's New">
-          <NewReleasesIcon className={classes.icon} />
+          <NewReleasesIcon
+            onClick={() => {
+              handleSortByChange('new');
+            }}
+            className={classes.icon}
+          />
         </IconButton>
       </Tooltip>
       <Tooltip title="Sort by Controversial">
         <IconButton aria-label="Sort by Controversial">
-          <SportsKabaddiIcon className={classes.icon} />
+          <SportsKabaddiIcon
+            onClick={() => {
+              handleSortByChange('controversial');
+            }}
+            className={classes.icon}
+          />
         </IconButton>
       </Tooltip>
       <Tooltip title="Sort by Top News">
         <IconButton aria-label="Sort by Top News">
-          <EqualizerIcon className={classes.icon} />
+          <EqualizerIcon
+            onClick={() => {
+              handleSortByChange('top');
+            }}
+            className={classes.icon}
+          />
         </IconButton>
       </Tooltip>
       <Tooltip title="Sort by Trending">
         <IconButton aria-label="Sort by Trending">
-          <TrendingUpIcon className={classes.icon} />
+          <TrendingUpIcon
+            onClick={() => {
+              handleSortByChange('trend');
+            }}
+            className={classes.icon}
+          />
         </IconButton>
       </Tooltip>
     </Paper>

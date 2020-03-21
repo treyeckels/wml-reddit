@@ -12,7 +12,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TweetEmbed from 'react-tweet-embed';
 import Grid from '@material-ui/core/Grid';
-import blueGrey from '@material-ui/core/colors/blueGrey';
+import grey from '@material-ui/core/colors/grey';
 
 const SubredditHeader = ({ img, height, title }) => {
   const useStyles = makeStyles(theme => ({
@@ -22,22 +22,36 @@ const SubredditHeader = ({ img, height, title }) => {
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
       width: '100%',
-      height
+      height,
+      position: 'relative'
     },
     titleContainer: {
-      height: 60,
-      backgroundColor: blueGrey[900],
-      padding: 10
+      height: 70,
+      backgroundColor: grey[100],
+      //padding: 10,
+      position: 'absolute',
+      bottom: 0,
+      width: '100%',
+      opacity: 0.8
+    },
+    title: {
+      padding: theme.spacing(1)
     }
   }));
   const classes = useStyles();
   return (
     <div>
-      <div className={classes.img}></div>
-      <div className={classes.titleContainer}>
-        <Typography variant="h3" color="textWhite" component="h3">
-          {title}
-        </Typography>
+      <div className={classes.img}>
+        <div className={classes.titleContainer}>
+          <Typography
+            className={classes.title}
+            variant="h3"
+            color="textWhite"
+            component="h3"
+          >
+            {title}
+          </Typography>
+        </div>
       </div>
     </div>
   );
