@@ -12,6 +12,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TweetEmbed from 'react-tweet-embed';
 import blueGrey from '@material-ui/core/colors/blueGrey';
+import { Link } from 'react-router-dom';
 
 import './StoryCard.css';
 
@@ -120,7 +121,7 @@ const StoryCard = ({ data }) => {
           Share
         </Button>
         <Button size="small" color="primary">
-          Read More
+          <Link to={data.permalink}>Read More</Link>
         </Button>
       </CardActions>
     </Card>
