@@ -66,7 +66,7 @@ const Landing = () => {
             <SortBar handleSortByChange={handleSortByChange} sortBy={sortBy} />
             {posts.length ? (
               posts.map(item => {
-                return <StoryCard data={item} />;
+                return <StoryCard key={item.permalink} data={item} />;
               })
             ) : (
               <div style={{ fontSize: 20, lineHeight: 2, height: 100 }}>

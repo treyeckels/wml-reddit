@@ -26,51 +26,55 @@ const SortBar = ({ handleSortByChange, sortBy }) => {
   return (
     <Paper className={classes.root} elevation={2}>
       <Tooltip title="Sort by What's Hot">
-        <IconButton aria-label="Sort by What's Hot">
-          <WhatshotIcon
-            onClick={() => {
-              handleSortByChange('hot');
-            }}
-            className={sortBy === 'hot' ? classes.active : ''}
-          />
+        <IconButton
+          onClick={() => {
+            handleSortByChange('hot');
+          }}
+          aria-label="Sort by What's Hot"
+        >
+          <WhatshotIcon className={sortBy === 'hot' ? classes.active : ''} />
         </IconButton>
       </Tooltip>
       <Tooltip title="Sort by What's New">
-        <IconButton aria-label="Sort by What's New">
-          <NewReleasesIcon
-            onClick={() => {
-              handleSortByChange('new');
-            }}
-            className={sortBy === 'new' ? classes.active : ''}
-          />
+        <IconButton
+          onClick={() => {
+            handleSortByChange('new');
+          }}
+          aria-label="Sort by What's New"
+        >
+          <NewReleasesIcon className={sortBy === 'new' ? classes.active : ''} />
         </IconButton>
       </Tooltip>
       <Tooltip title="Sort by Controversial">
-        <IconButton aria-label="Sort by Controversial">
+        <IconButton
+          onClick={() => {
+            handleSortByChange('controversial');
+          }}
+          aria-label="Sort by Controversial"
+        >
           <SportsKabaddiIcon
-            onClick={() => {
-              handleSortByChange('controversial');
-            }}
             className={sortBy === 'controversial' ? classes.active : ''}
           />
         </IconButton>
       </Tooltip>
       <Tooltip title="Sort by Top News">
-        <IconButton aria-label="Sort by Top News">
-          <EqualizerIcon
-            onClick={() => {
-              handleSortByChange('top');
-            }}
-            className={sortBy === 'top' ? classes.active : ''}
-          />
+        <IconButton
+          onClick={() => {
+            handleSortByChange('top');
+          }}
+          aria-label="Sort by Top News"
+        >
+          <EqualizerIcon className={sortBy === 'top' ? classes.active : ''} />
         </IconButton>
       </Tooltip>
       <Tooltip title="Sort by Trending">
-        <IconButton aria-label="Sort by Trending">
+        <IconButton
+          onClick={() => {
+            handleSortByChange('rising');
+          }}
+          aria-label="Sort by Trending"
+        >
           <TrendingUpIcon
-            onClick={() => {
-              handleSortByChange('rising');
-            }}
             className={sortBy === 'rising' ? classes.active : ''}
           />
         </IconButton>

@@ -19,7 +19,6 @@ const SubredditHeader = ({ img, height, title }) => {
     titleContainer: {
       height: 70,
       backgroundColor: grey[100],
-      //padding: 10,
       position: 'absolute',
       bottom: 0,
       width: '100%',
@@ -37,7 +36,7 @@ const SubredditHeader = ({ img, height, title }) => {
           <Typography
             className={classes.title}
             variant="h3"
-            color="textWhite"
+            color="textPrimary"
             component="h3"
           >
             {title}

@@ -76,7 +76,7 @@ const User = ({ location }) => {
         <Grid item xs={12} sm={8}>
           {comments.length ? (
             comments.map(item => {
-              return <StoryCard data={item} />;
+              return <StoryCard key={item.permalink} data={item} />;
             })
           ) : (
             <div style={{ fontSize: 20, lineHeight: 2, height: 100 }}>
