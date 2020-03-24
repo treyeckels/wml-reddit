@@ -16,7 +16,9 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "react-spinners": "^0.8.1",
-    "react-tweet-embed": "^1.2.2"
+    "react-tweet-embed": "^1.2.2",
+    "workbox-routing": "^5.1.1",
+    "workbox-strategies": "^5.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
