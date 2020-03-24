@@ -1,23 +1,65 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Landing from './Pages/Landing';
-import Post from './Pages/Post';
-import User from './Pages/User';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import AppHeader from './Components/AppHeader/AppHeader';
+import Landing from './Pages/Landing';
+import MuiAlert from '@material-ui/lab/Alert';
+import Post from './Pages/Post';
+import Snackbar from '@material-ui/core/Snackbar';
+import User from './Pages/User';
 
 import './App.css';
 
 class App extends React.Component {
+  state = {
+    online: navigator.onLine,
+    snackBarOpen: false,
+    snackBarSeverity: 'success',
+    snackBarMessage: 'You are back online.'
+  };
+
+  handleConnectionChange = () => {
+    this.setState({
+      online: navigator.onLine,
+      snackBarOpen: true,
+      snackBarSeverity: navigator.onLine ? 'success' : 'warning',
+      snackBarMessage: navigator.onLine
+        ? 'You are back online.'
+        : 'You are offline.'
+    });
+  };
+
+  handleClose = () => {
+    this.setState({
+      snackBarOpen: false
+    });
+  };
+
+  componentDidMount() {
+    window.addEventListener('online', this.handleConnectionChange);
+    window.addEventListener('offline', this.handleConnectionChange);
+  }
+
   render() {
     return (
       <div className="App">
         <AppHeader />
+        {this.state.online ? (
+          ''
+        ) : (
+          <MuiAlert severity="warning">You are offline.</MuiAlert>
+        )}
+        <Snackbar
+          open={this.state.snackBarOpen}
+          autoHideDuration={6000}
+          onClose={this.handleClose}
+        >
+          <MuiAlert
+            onClose={this.handleClose}
+            severity={this.state.snackBarSeverity}
+          >
+            {this.state.snackBarMessage}
+          </MuiAlert>
+        </Snackbar>
         <Router>
           <Switch>
             <Route path="/user" render={props => <User {...props} />} />
