@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const AppHeader = ({ description, title, icon }) => {
+const AppHeader = () => {
   const classes = useStyles();
 
   return (
