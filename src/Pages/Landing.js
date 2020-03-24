@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import StoryCard from '../Components/StoryCard/StoryCard';
 import RailCard from '../Components/RailCard/RailCard';
-import SubredditHeader from '../Components/SubredditHeader/SubredditHeader';
-import SortBar from '../Components/SortBar/SortBar';
-import LoadingOverlay from 'react-loading-overlay';
 import Skeleton from 'react-loading-skeleton';
+import SortBar from '../Components/SortBar/SortBar';
+import StoryCard from '../Components/StoryCard/StoryCard';
+import SubredditHeader from '../Components/SubredditHeader/SubredditHeader';
+
 import api from '../api';
 
 const useStyles = makeStyles({

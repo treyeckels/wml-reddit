@@ -1,27 +1,14 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardHeader from '@material-ui/core/CardHeader';
-import Chip from '@material-ui/core/Chip';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import blueGrey from '@material-ui/core/colors/blueGrey';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Paper from '@material-ui/core/Paper';
-import WhatshotIcon from '@material-ui/icons/Whatshot';
-import NewReleasesIcon from '@material-ui/icons/NewReleases';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
+import IconButton from '@material-ui/core/IconButton';
+import NewReleasesIcon from '@material-ui/icons/NewReleases';
+import orange from '@material-ui/core/colors/orange';
+import Paper from '@material-ui/core/Paper';
 import SportsKabaddiIcon from '@material-ui/icons/SportsKabaddi';
-import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import Tooltip from '@material-ui/core/Tooltip';
+import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+import WhatshotIcon from '@material-ui/icons/Whatshot';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2)
   },
   active: {
-    color: 'red'
+    color: orange[900]
   }
 }));
 

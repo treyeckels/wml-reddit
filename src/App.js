@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Landing from './Pages/Landing';
 import Post from './Pages/Post';
+import User from './Pages/User';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
@@ -19,9 +20,8 @@ class App extends React.Component {
         <AppHeader />
         <Router>
           <Switch>
-            <Route path="/r">
-              <Post />
-            </Route>
+            <Route path="/user" render={props => <User {...props} />} />
+            <Route path="/r" render={props => <Post {...props} />} />
             <Route path="/">
               <Landing />
             </Route>

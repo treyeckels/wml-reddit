@@ -41,6 +41,35 @@ const api = {
       .catch(err => {
         console.log(err);
       });
+  },
+  getChildComments: async (linkId, children) => {
+    try {
+      const response = await fetch(
+        `https://us-central1-wml-reddit.cloudfunctions.net/getChildren?link_id=t3_${linkId}&children=${children}`
+      );
+      const json = await response.json();
+      return json;
+    } catch (e) {
+      console.error(e);
+    }
+  },
+  getUser: async id => {
+    try {
+      const response = await fetch(`${redditAPI}/${id}/about.json`);
+      const json = await response.json();
+      return json;
+    } catch (e) {
+      console.error(e);
+    }
+  },
+  getUserComments: async id => {
+    try {
+      const response = await fetch(`${redditAPI}/${id}/comments.json`);
+      const json = await response.json();
+      return json;
+    } catch (e) {
+      console.error(e);
+    }
   }
 };
 
