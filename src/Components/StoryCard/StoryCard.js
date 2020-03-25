@@ -51,27 +51,38 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const StoryCard = ({ data }) => {
+  console.log(data);
   const classes = useStyles();
-  const tweetMatch = data.media_embed.content
-    ? data.media_embed.content.match(
-        /https:\/\/twitter.com\/.*\/status\/(.*)\?/
-      )
-    : null;
+  const tweetMatch =
+    data.media_embed && data.media_embed.content
+      ? data.media_embed.content.match(
+          /https:\/\/twitter.com\/.*\/status\/(.*)\?/
+        )
+      : null;
   const tweetId = tweetMatch && tweetMatch[1] ? tweetMatch[1] : null;
-  let date = '';
+  let date;
   try {
     date = new Date(data.created_utc * 1000).toString();
   } catch (e) {
-    console.log(`Could not create date because ${e}`);
+    date = '';
+    console.error(`Could not create date because ${e}`);
   }
   return (
-    <Card className={classes.root}>
-      <CardHeader title={<Author author={data.author} />} subheader={date} />
+    <Card data-testid="story-card" className={classes.root}>
+      <CardHeader
+        data-testid="story-card-header"
+        title={<Author author={data.author} />}
+        subheader={date}
+      />
       <CardActionArea>
-        <CardContent>
+        <CardContent data-testid="story-card-content">
           <div className={classes.headlineContainer}>
             {data.thumbnail && !data.media_embed.content ? (
-              <Avatar className={classes.media} src={data.thumbnail} />
+              <Avatar
+                data-testid="story-card-thumbnail"
+                className={classes.media}
+                src={data.thumbnail}
+              />
             ) : (
               ''
             )}
@@ -89,7 +100,7 @@ const StoryCard = ({ data }) => {
             )}
           </div>
           {tweetId ? (
-            <div className={classes.tweet}>
+            <div data-testid={tweetId} className={classes.tweet}>
               <TweetEmbed id={tweetId} />
             </div>
           ) : (
