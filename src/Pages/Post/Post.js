@@ -39,7 +39,7 @@ const Post = ({ location }) => {
   }, []);
 
   return (
-    <div className={classes.root}>
+    <div data-testid="post" className={classes.root}>
       <Grid container spacing={4}>
         <Grid item xs={12} sm={8}>
           <Typography variant="body1">

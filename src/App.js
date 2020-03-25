@@ -17,6 +17,12 @@ class App extends React.Component {
     snackBarMessage: 'You are back online.'
   };
 
+  /**
+   * Callback for when user's network connection changes.
+   * Will open a snackbar alert in case the user is lower
+   * down on the page as well as place a static alert at
+   * the top of the page by setting the appropriate states.
+   */
   handleConnectionChange = () => {
     this.setState({
       online: navigator.onLine,
@@ -28,12 +34,21 @@ class App extends React.Component {
     });
   };
 
+  /**
+   * Handles the snackbar's close event by setting state to close
+   * it.
+   */
   handleClose = () => {
     this.setState({
       snackBarOpen: false
     });
   };
 
+  /**
+   * Sets up event listeners for network connection changes
+   * so that we can alert the user when they go on or
+   * offline.
+   */
   componentDidMount() {
     window.addEventListener('online', this.handleConnectionChange);
     window.addEventListener('offline', this.handleConnectionChange);
@@ -41,7 +56,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div data-testid="app" className="App">
         <AppHeader />
         {this.state.online ? (
           ''

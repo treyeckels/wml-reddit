@@ -64,7 +64,7 @@ const User = ({ location }) => {
   }, []);
 
   return (
-    <div className={classes.root}>
+    <div data-testid="user" className={classes.root}>
       <Grid container spacing={4}>
         <Grid item xs={12} sm={3}>
           <RailCard

@@ -9,11 +9,11 @@ import SubredditHeader from '../../Components/SubredditHeader/SubredditHeader';
 
 import api from '../../api';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
-    padding: 10
+    padding: theme.spacing(1)
   }
-});
+}));
 
 const Landing = () => {
   const [data, setData] = useState({});
@@ -52,7 +52,7 @@ const Landing = () => {
   const classes = useStyles();
   return (
     <div>
-      <div className={classes.root}>
+      <div data-testid="landing" className={classes.root}>
         <Grid container spacing={4}>
           <Grid item xs={12}>
             <SubredditHeader
