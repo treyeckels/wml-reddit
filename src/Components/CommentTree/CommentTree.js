@@ -24,7 +24,8 @@ const mapNodestoComments = arr => {
 const useStyles = makeStyles(theme => ({
   root: {
     borderLeft: '1px solid gray',
-    marginTop: theme.spacing(1)
+    marginTop: theme.spacing(1),
+    wordBreak: 'break-word'
   }
 }));
 

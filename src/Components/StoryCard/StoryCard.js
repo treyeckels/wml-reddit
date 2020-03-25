@@ -118,9 +118,6 @@ const StoryCard = ({ data }) => {
           ''
         )}
         <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
           <Link to={data.permalink}>Read More</Link>
         </Button>
       </CardActions>

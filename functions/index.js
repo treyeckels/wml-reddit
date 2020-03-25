@@ -1,58 +1,24 @@
 const admin = require('firebase-admin');
 const functions = require('firebase-functions');
-const express = require('express');
 const fetch = require('node-fetch');
 const cors = require('cors')({
   origin: true
 });
 
 admin.initializeApp();
-const { ApolloServer, gql } = require('apollo-server-express');
 
-// const typeDefs = gql`
-//   type Subreddit {
-//     description: String
-//   }
-//   type Post {
-//     title: String
-//   }
-//   type Feed {
-//     data: [Post]
-//   }
-//   type Query {
-//     subreddit: Subreddit
-//     feed: Feed
-//   }
-// `;
-
-// const resolvers = {
-//   Query: {
-//     subreddit: async () => {
-//       const res = await fetch(
-//         'https://www.reddit.com/r/Coronavirus/about.json'
-//       );
-//       const json = await res.json();
-//       return json.data;
-//     },
-//     feed: async () => {
-//       const res = await fetch('https://www.reddit.com/r/Coronavirus/top.json');
-//       const json = await res.json();
-//       console.log('data', json.data.children);
-//       const mapped = json.data.children.map(item => {
-//         return item.data;
-//       });
-//       return {
-//         data: mapped
-//       };
-//     }
-//   }
-// };
-
-// const app = express();
-// const server = new ApolloServer({ typeDefs, resolvers });
-// server.applyMiddleware({ app, path: '/', cors: true });
-// exports.graphql = functions.https.onRequest(app);
-
+/**
+ * This particular endpoint was giving me CORS errors, although
+ * it seems odd just 1 endpoint would do that -- and because
+ * sometimes Chrome reports other network errors as CORS errors
+ * it's possible there is really not a CORS issue with this
+ * Reddit endpoint.
+ *
+ * Just in case, though, this server-side endpoint was created
+ * to be a proxy for fetching the more children Reddit
+ * endpoint, which returns all the rolled up comments for a
+ * particular thread.
+ */
 exports.getChildren = functions.https.onRequest((req, res) => {
   cors(req, res, async () => {
     const link_id = req.query.link_id;

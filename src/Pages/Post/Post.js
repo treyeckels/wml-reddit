@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CommentTree from '../../Components/CommentTree/CommentTree';
-import Grid from '@material-ui/core/Grid';
-import RailCard from '../../Components/RailCard/RailCard';
 import Skeleton from 'react-loading-skeleton';
 import Typography from '@material-ui/core/Typography';
 
@@ -40,37 +38,30 @@ const Post = ({ location }) => {
 
   return (
     <div data-testid="post" className={classes.root}>
-      <Grid container spacing={4}>
-        <Grid item xs={12} sm={8}>
-          <Typography variant="body1">
-            {post.author ? (
-              `Posted by ${post.author} | ${post.ups} upvotes`
-            ) : (
-              <Skeleton />
-            )}
-          </Typography>
-          <Typography className={classes.title} variant="h2">
-            {post.title || <Skeleton />}
-          </Typography>
-          {comments.length ? (
-            <CommentTree data={comments} linkId={post.id} rootId={post.id} />
-          ) : (
-            <div
-              style={{
-                fontSize: 20,
-                lineHeight: 2,
-                height: '100vh',
-                overflow: 'auto'
-              }}
-            >
-              <Skeleton count={100} />
-            </div>
-          )}
-        </Grid>
-        <Grid item xs={12} sm={3}>
-          <RailCard title="About" description="" />
-        </Grid>
-      </Grid>
+      <Typography variant="body1">
+        {post.author ? (
+          `Posted by ${post.author} | ${post.ups} upvotes`
+        ) : (
+          <Skeleton />
+        )}
+      </Typography>
+      <Typography className={classes.title} variant="h2">
+        {post.title || <Skeleton />}
+      </Typography>
+      {comments.length ? (
+        <CommentTree data={comments} linkId={post.id} rootId={post.id} />
+      ) : (
+        <div
+          style={{
+            fontSize: 20,
+            lineHeight: 2,
+            height: '100vh',
+            overflow: 'auto'
+          }}
+        >
+          <Skeleton count={100} />
+        </div>
+      )}
     </div>
   );
 };
