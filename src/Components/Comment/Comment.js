@@ -31,7 +31,7 @@ const Comment = ({ comment, linkId }) => {
   }
 
   return (
-    <li data-testid={comment.data.id} className={classes.root}>
+    <li data-testid="comment" className={classes.root}>
       {author ? <Author author={author} /> : ''}
       {comment.data.body || comment.data.contentText}
       {comment.data.replies &&
