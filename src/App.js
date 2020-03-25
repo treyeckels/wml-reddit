@@ -1,11 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import AppHeader from './Components/AppHeader/AppHeader';
-import Landing from './Pages/Landing';
+import Landing from './Pages/Landing/Landing';
 import MuiAlert from '@material-ui/lab/Alert';
-import Post from './Pages/Post';
+import Post from './Pages/Post/Post';
 import Snackbar from '@material-ui/core/Snackbar';
-import User from './Pages/User';
+import User from './Pages/User/User';
 
 import './App.css';
 
