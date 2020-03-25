@@ -2,7 +2,7 @@
 
 ## Walk Through
 
-- This is a Progressive Web App, which can be installed on your device. It offers minimal offline support. It will alert the user if there is no network connection and will alert the user when the user comes back online. Future improvements would include storing the Reddit API calls into IndexDB and pulling from there via the ServiceWorker when the user is offline.
+- This is a Progressive Web App, which should ask the user if he/she wants to install to the Home screen of the device. It offers minimal offline support. It will alert the user if there is no network connection and will alert the user when the user comes back online. Future improvements would include storing the Reddit API calls into IndexDB and pulling from there via the ServiceWorker when the user is offline.
 
 - The Landing page is a Subreddit community with information about the community in the right sidebar. Reddit API provides the description content as markdown (as well as regular text and HTML markup), so this uses a 3rd party Markdown component to translate the markdown to HTML. Featured on the Landing page are the latest posts. Some posts have tweet embeds, which are turned into Twitter tweets via a 3rd party TweetEmbed Component using the twitter id that is in the markup the Reddit API returns. Above the posts is a sorting bar that allows the user to sort the posts by Reddit's main sorting mechanisms. For desktop users there is a tooltip on each icon. Clicking the Read More takes the user to the Post page.
 
