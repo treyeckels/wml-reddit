@@ -30,9 +30,12 @@ const useStyles = makeStyles(theme => ({
 
 const CommentTree = ({ data, rootId, linkId }) => {
   const classes = useStyles();
-  const [comments, setComments] = useState(data);
+  const [comments, setComments] = useState(data || []);
   const [children, setChildren] = useState([]);
   useEffect(() => {
+    if (!data) {
+      return;
+    }
     const len = data.length;
     if (len) {
       const maybeMore = data[len - 1];
@@ -52,7 +55,16 @@ const CommentTree = ({ data, rootId, linkId }) => {
     api
       .getChildComments(linkId, children)
       .then(arr => {
+        console.log('arr', arr);
         const root = new Node(`${rootId}`, {});
+        if (
+          !arr.data ||
+          !arr.data.json ||
+          !arr.data.json.data ||
+          !arr.data.json.data.things
+        ) {
+          return;
+        }
         arr.data.json.data.things.forEach(obj => {
           let id = getNormalizedId(obj.data.id);
           const node = new Node(id, obj.data);
@@ -77,11 +89,12 @@ const CommentTree = ({ data, rootId, linkId }) => {
   };
 
   return (
-    <ul className={classes.root}>
+    <ul data-testid="comment-tree" className={classes.root}>
       {comments.map(comment => {
         if (comment.kind === 'more' && comment.data.count && !hasClickedMore) {
           return (
             <Button
+              data-testid="comment-tree-more-button"
               key={comment.data.id}
               onClick={handleMoreComments}
               color="primary"

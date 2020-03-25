@@ -24,7 +24,7 @@ const RailCard = ({ description, title, icon }) => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card data-testid="rail-card" className={classes.root}>
       <CardHeader
         title={title || <Skeleton />}
         avatar={<Avatar src={icon}></Avatar>}

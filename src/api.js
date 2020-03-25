@@ -1,3 +1,4 @@
+import axios from 'axios';
 const redditAPI = 'https://www.reddit.com';
 const api = {
   getSubreditPosts: (name, sortBy) => {
@@ -44,14 +45,23 @@ const api = {
   },
   getChildComments: async (linkId, children) => {
     try {
-      const response = await fetch(
+      const response = await axios.get(
         `https://us-central1-wml-reddit.cloudfunctions.net/getChildren?link_id=t3_${linkId}&children=${children}`
       );
-      const json = await response.json();
-      return json;
+      return response.data;
     } catch (e) {
       console.error(e);
+      throw e;
     }
+    // try {
+    //   const response = await fetch(
+    //     `https://us-central1-wml-reddit.cloudfunctions.net/getChildren?link_id=t3_${linkId}&children=${children}`
+    //   );
+    //   const json = await response.json();
+    //   return json;
+    // } catch (e) {
+    //   console.error(e);
+    // }
   },
   getUser: async id => {
     try {

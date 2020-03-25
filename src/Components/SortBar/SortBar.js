@@ -55,7 +55,11 @@ const SortBar = ({ handleSortByChange, sortBy }) => {
     <Paper data-testid="sort-bar" className={classes.root} elevation={2}>
       {data.map(obj => {
         return (
-          <Tooltip key={obj.id} title={`Sort by ${obj.title}`}>
+          <Tooltip
+            key={obj.id}
+            data-testid={`sort-bar-${obj.id}`}
+            title={`Sort by ${obj.title}`}
+          >
             <IconButton
               className={sortBy === obj.id ? classes.active : ''}
               onClick={() => {

@@ -51,7 +51,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const StoryCard = ({ data }) => {
-  console.log(data);
   const classes = useStyles();
   const tweetMatch =
     data.media_embed && data.media_embed.content
