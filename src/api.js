@@ -13,19 +13,6 @@ const api = {
       console.error(e);
       throw e;
     }
-    // return fetch(`${redditAPI}/r/${name}/${sortBy}.json`)
-    //   .then(res => {
-    //     return res.json();
-    //   })
-    //   .then(data => {
-    //     console.log(data);
-    //     return data.data.children.map(item => {
-    //       return item.data;
-    //     });
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
   },
   getSubredit: async name => {
     try {
@@ -35,17 +22,6 @@ const api = {
       console.error(e);
       throw e;
     }
-
-    // return fetch(`${redditAPI}/r/${name}/about.json`)
-    //   .then(res => {
-    //     return res.json();
-    //   })
-    //   .then(data => {
-    //     return data.data;
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
   },
   getPost: async id => {
     try {
@@ -58,19 +34,6 @@ const api = {
       console.error(e);
       throw e;
     }
-    // return fetch(`${redditAPI}${id}.json`)
-    //   .then(res => {
-    //     return res.json();
-    //   })
-    //   .then(data => {
-    //     return {
-    //       postData: data[0].data.children[0].data,
-    //       comments: data[1].data.children
-    //     };
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
   },
   getChildComments: async (linkId, children) => {
     try {
