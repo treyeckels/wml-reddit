@@ -76,7 +76,6 @@ const Landing = () => {
           </Grid>
           <Grid item xs={12} sm={3}>
             <RailCard title="About" description={data.description} />
-            <RailCard title="About" />
           </Grid>
         </Grid>
       </div>

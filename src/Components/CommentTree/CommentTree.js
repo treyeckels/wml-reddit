@@ -7,6 +7,14 @@ import { Node, getParentNodeById, getNormalizedId } from '../../utilities';
 import api from '../../api';
 import './CommentTree.css';
 
+/**
+ * Reddit API sends the data for child comments structured differently than the initial comments fetch, so here we normalize
+ * the data structure into the previous format so that
+ * we can reuse the same comment and comment tree components.
+ *
+ * @param {Array.<Node>} arr The tree of nodes we built
+ *  from the flattened comments results.
+ */
 const mapNodestoComments = arr => {
   return arr.map(node => {
     const data = node.data;
@@ -56,8 +64,6 @@ const CommentTree = ({ data, rootId, linkId }) => {
     api
       .getChildComments(linkId, children)
       .then(arr => {
-        console.log('arr', arr);
-        const root = new Node(`${rootId}`, {});
         if (
           !arr.data ||
           !arr.data.json ||
@@ -66,6 +72,13 @@ const CommentTree = ({ data, rootId, linkId }) => {
         ) {
           return;
         }
+        // The thread child comments Reddit endpoint returns a
+        // flattened list of comments with parent IDs. In order
+        // to display them in the correct hierarchal order, we
+        // build these back up into a tree, which we will
+        // recursively iterate over later. Each comment becomes
+        // a node in the tree.
+        const root = new Node(`${rootId}`, {});
         arr.data.json.data.things.forEach(obj => {
           let id = getNormalizedId(obj.data.id);
           const node = new Node(id, obj.data);
